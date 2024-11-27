@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="landingPage" class="container landing-page">
+        <h1>Expense Tracker</h1>
+        <button class="btn" onclick="navigateTo('addExpense')">Add Expense</button>
+        <button class="btn" onclick="navigateTo('summary')">Summary</button>
+        <button class="btn" onclick="navigateTo('search')">Search</button>
+        <button class="btn" onclick="navigateTo('delete')">Delete</button>
+        <button class="btn" onclick="navigateTo('copy')">Copy</button>
+    </div>
+
+    <div id="addExpense" class="container page hidden">
+        <h2>Add Expense</h2>
+        <input type="date" id="expenseDate" required>
+        <input type="number" id="expenseAmount" placeholder="Amount" min="0" step="0.01" required>
+        <input type="text" id="expenseDescription" placeholder="Description" required>
+        <button class="btn" onclick="addExpense()">Add Expense</button>
+        <button class="btn" onclick="navigateTo('landingPage')">Back</button>
+        <div id="addMessage"></div>
+    </div>
+
+    <div id="summary" class="container page hidden">
+        <h2>Expense Summary</h2>
+        <div id="summaryTable"></div>
+        <div id="summaryPagination" class="pagination"></div>
+        <button class="btn" onclick="navigateTo('landingPage')">Back</button>
+    </div>
+
+    <div id="search" class="container page hidden">
+        <h2>Search Expenses</h2>
+        <input type="text" id="searchInput" placeholder="Search by Date or Description">
+        <button class="btn" onclick="searchExpenses()">Search</button>
+        <div id="searchCount"></div>
+        <div id="searchResults"></div>
+        <button class="btn" onclick="navigateTo('landingPage')">Back</button>
+    </div>
+
+    <div id="delete" class="container page hidden">
+        <h2>Delete Expenses</h2>
+        <input type="date" id="deleteDate">
+        <button class="btn" onclick="searchExpensesToDelete()">Search</button>
+        <form id="deleteForm"></form>
+        <button class="btn" onclick="deleteSelectedExpenses()">Delete Selected</button>
+        <button class="btn" onclick="navigateTo('landingPage')">Back</button>
+        <div id="deleteMessage"></div>
+    </div>
+
+    <div id="copy" class="container page hidden">
+        <h2>Copy Expenses</h2>
+        <label>From Date: <input type="date" id="copyFromDate"></label>
+        <label>To Date: <input type="date" id="copyToDate"></label>
+        <button class="btn" onclick="filterAndPrepareForCopy()">Filter</button>
+        <div id="copyTable"></div>
+        <button class="btn" id="copyButton" onclick="copyTableToClipboard()" style="display:none;">Copy Table</button>
+        <button class="btn" onclick="navigateTo('landingPage')">Back</button>
+        <div id="copyMessage"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
